@@ -1,3 +1,8 @@
-<p>{{ id }}</p>
+<h2>Room Name: {{ id }}</h2>
+
+<div id="buttons">
 <input (keyup)="onKey($event)">
-<button (click)="onAddClick()">Request Song</button>
+<br>
+<button class="button" style="vertical-align:middle" (click)="onAddClick()"><span>Request Song</span></button>
+</div>
+<h3>{{ addResponse }}</h3>

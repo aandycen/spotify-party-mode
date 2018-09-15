@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class RoomComponent implements OnInit {
   id: string;
   private sub: any;
+  addResponse: string;
   textBoxString = '';
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
@@ -21,9 +22,11 @@ export class RoomComponent implements OnInit {
   }
 
   onAddClick(){
-    this.http.get("http://1525cd2b.ngrok.io/add").subscribe(response => {
+    var postBody = {"song" : this.textBoxString,
+      "name" : this.id};
+    this.http.post("http://1525cd2b.ngrok.io/add", postBody).subscribe(response => {
       console.log(response);
-      this.joinResponse = response.title;
+      this.addResponse = "Added " + response.name + " by " + response.artist;
     });
   }
 

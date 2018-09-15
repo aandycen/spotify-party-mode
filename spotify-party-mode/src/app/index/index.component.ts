@@ -24,17 +24,18 @@ export class IndexComponent implements OnInit {
     this.http.get("http://1525cd2b.ngrok.io/create").subscribe(response => {
       console.log(response);
       this.createResponse = response.playlistID;
-      var routeDest = '/room/' + response.playlistID;
+      var routeDest = '/room/' + response.playlistName;
       this.router.navigate([routeDest]);
-      //window.open("http://localhost:3600/room/" + response.playlistID);
+      var spotifyLink = "https://open.spotify.com/playlist/" + response.playlistID;
+      window.open(spotifyLink);
     });
   }
 
   onJoinClick(){
-    var postBody = {"playlistID" : this.textBoxString};
+    var postBody = {"name" : this.textBoxString};
     this.http.post("http://1525cd2b.ngrok.io/join", postBody).subscribe(response => {
       this.joinResponse = response.canJoin;
-      if(response.canJoin == "true") {
+      if(response.canJoin == "True") {
         var routeDest = '/room/' + this.textBoxString;
         this.router.navigate([routeDest]);
       }
