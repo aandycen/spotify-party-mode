@@ -3,7 +3,11 @@
 <p>{{createResponse}}</p>
 <p>{{joinResponse}}</p>
 <p>{{textBoxString}}</p>
-<button (click)="onCreateClick()">Create Room</button>
+
+<div id="buttons">
+<button class="button" style="vertical-align:middle" (click)="onCreateClick()"><span>Create Room</span></button>
+<br>
 <input (keyup)="onKey($event)">
 <button (click)="onJoinClick()">Join Room</button>
+</div>
 </body>
