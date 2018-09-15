@@ -7,15 +7,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'spotify-party-mode';
-  createResponse = 'not yet clicked';
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
-  onCreateClick(){
-    this.http.get("http://localhost:5000/hello").subscribe(response => {
-      console.log(response);
-      this.createResponse = response.id;
-    });
-  }
 }
