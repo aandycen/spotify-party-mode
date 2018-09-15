@@ -8,7 +8,7 @@ import spotipy.util as util
 
 scope = 'playlist-modify-public'
 username = "victorsch52"
-token = util.prompt_for_user_token(username, scope)
+token = util.prompt_for_user_token(username, scope, client_id='089776be79914d7f8d3a4a87594f4463', client_secret='079b16e58d3c480c8e55263caed0c284')
 
 def addsong(username, song, playlist_id):
 	track_id = search(song).split()
