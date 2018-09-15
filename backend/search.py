@@ -7,30 +7,11 @@ client_credentials_manager = SpotifyClientCredentials(client_id='089776be79914d7
 
 
 
-if len(sys.argv) > 2:
-    artist_str = sys.argv[1]
-    song_str = sys.argv[2]
-else:
-    search_str = "Vulfpeck"
-    song_str = "Dean Town"
-
-
-sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-result = sp.search(artist_str)
-for x in range(0, len(result['tracks']['items'])):
-    if(result['tracks']['items'][x]['name'] == song_str):
-        print("Song found!")
-        pprint.pprint(result['tracks']['items'][x]['id'])
-#pprint.pprint(result['tracks']['items'][3])
-
-
-def search(artist, song):
-    result = sp.search(artist)
-    for x in range(0, len(result['tracks']['items'])):
-        if(result['tracks']['items'][x]['name'] == song):
-            print("Song found!")
-            pprint.pprint(result['tracks']['items'][x]['id'])
-            uri = result['tracks']['items'][x]['id']
+def search(song):
+    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+    result = sp.search(song)
+    uri = result['tracks']['items'][0]['id']
+    print("Search Successful!")
+    print(uri)
     return uri
-
-
+search("Animal Spirits")
