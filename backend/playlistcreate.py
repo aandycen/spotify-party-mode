@@ -12,7 +12,7 @@ else:
 	sys.exit()
 
 scope = 'playlist-modify-public'
-token = util.prompt_for_user_token(username, scope)
+token = util.prompt_for_user_token(username, scope, client_id='089776be79914d7f8d3a4a87594f4463', client_secret='079b16e58d3c480c8e55263caed0c284')
 
 if token:
 	sp = spotipy.Spotify(auth=token)
