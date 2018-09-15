@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -14,34 +15,33 @@ export class IndexComponent implements OnInit {
   joinResponse = 'not yet clicked';
   textBoxString = 'null';
 
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': 'my-auth-token'
-    })
-  };
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
   }
 
   onCreateClick(){
-    this.http.get("http://022b0446.ngrok.io/create").subscribe(response => {
+    this.http.get("http://1525cd2b.ngrok.io/create").subscribe(response => {
       console.log(response);
-      this.createResponse = response.id;
+      this.createResponse = response.playlistID;
+      var routeDest = '/room/' + response.playlistID;
+      this.router.navigate([routeDest]);
+      //window.open("http://localhost:3600/room/" + response.playlistID);
     });
   }
 
   onJoinClick(){
-    this.http.post("http://022b0446.ngrok.io/join", this.textBoxString, this.httpOptions).subscribe(response => {
-      console.log(response);
-      this.joinResponse = response.title;
+    var postBody = {"playlistID" : this.textBoxString};
+    this.http.post("http://1525cd2b.ngrok.io/join", postBody).subscribe(response => {
+      this.joinResponse = response.canJoin;
+      if(response.canJoin == "true") {
+        var routeDest = '/room/' + this.textBoxString;
+        this.router.navigate([routeDest]);
+      }
     });
   }
 
   onKey(event: any) {
     this.textBoxString = (<HTMLInputElement>event.target).value;
   }
-
 }

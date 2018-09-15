@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -8,16 +8,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RoomComponent implements OnInit {
   id: string;
+  private sub: any;
   textBoxString = '';
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-
+    this.sub = this.route.params.subscribe(params => {
+           this.id = params['id'];
+        });
   }
 
   onAddClick(){
-    this.http.get("http://022b0446.ngrok.io/add").subscribe(response => {
+    this.http.get("http://1525cd2b.ngrok.io/add").subscribe(response => {
       console.log(response);
       this.joinResponse = response.title;
     });
@@ -27,4 +30,7 @@ export class RoomComponent implements OnInit {
     this.textBoxString = (<HTMLInputElement>event.target).value;
   }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 }
