@@ -23,10 +23,10 @@ export class IndexComponent implements OnInit {
   onCreateClick(){
     this.http.get("http://1525cd2b.ngrok.io/create").subscribe(response => {
       console.log(response);
-      this.createResponse = response.playlistID;
-      var routeDest = '/room/' + response.playlistName;
+      this.createResponse = (response as any).playlistID;
+      var routeDest = '/room/' + (response as any).playlistName;
       this.router.navigate([routeDest]);
-      var spotifyLink = "https://open.spotify.com/playlist/" + response.playlistID;
+      var spotifyLink = "https://open.spotify.com/playlist/" + (response as any).playlistID;
       window.open(spotifyLink);
     });
   }
