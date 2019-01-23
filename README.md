@@ -11,11 +11,13 @@ Received *Best Miscellaneous Hack* at SBUHacks 2018.
 * * *
 #### Demo
 ![](spmdemo1.png)
-* Party host creates a party room and distributes the room name (`nasty` in this case).
+Party host creates a party room and distributes the room name (`nasty` in this case).
+
 ![](spmdemo2.png)
-* Others can join the room to request songs.
+Others can join the room to request songs.
+
 ![](spmdemo3.png)
-* A public Spotify playlist is generated and can be played from the party host’s device or shared.
+A public Spotify playlist is generated and can be played from the party host’s device or shared.
 
 * * *
 #### Built using
